@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-deep: #0a0a0a;
+  --bg-dark: #121212;
+  --bg-panel: #1a1a1a;
+  --bg-panel-hover: #222222;
+  
+  --text-main: #f5f5f5;
+  --text-muted: #a3a3a3;
+  --text-dim: #737373;
+  
+  /* Primary replaced with neutral UI color */
+  --primary: #ffffff;
+  --primary-glow: rgba(255, 255, 255, 0.1);
+  
+  /* Strict Traffic Colors */
+  --signal-red: #ef4444;
+  --signal-yellow: #eab308;
+  --signal-green: #22c55e;
+  
+  --border-subtle: #262626;
+  --border-active: #404040;
+  
+  --shadow-panel: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Layout */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: var(--bg-dark);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sidebar-brand {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: all 0.1s ease;
+  border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+  background-color: var(--bg-panel);
+  color: var(--text-main);
+}
+
+.nav-link.active {
+  background-color: var(--bg-panel);
+  color: var(--text-main);
+  border-left-color: var(--primary);
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  overflow-y: auto;
+}
+
+/* UI Components */
+.panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 1.5rem;
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border: 1px solid var(--border-active);
+  background: var(--bg-panel);
+  color: var(--text-main);
+  transition: all 0.1s;
+}
+
+.btn:hover {
+  background: var(--bg-panel-hover);
+  border-color: var(--text-muted);
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--bg-dark);
+  border: 1px solid var(--border-active);
+  border-radius: 4px;
+  color: var(--text-main);
+  font-size: 0.875rem;
+  transition: all 0.1s;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--text-muted);
+}
+
+/* Traffic Light Focus */
+.traffic-light-housing {
+  background: #050505;
+  border-radius: 8px;
+  padding: 1rem 0.75rem;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 1px solid #1a1a1a;
+}
+
+.light-bulb {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #171717;
+  position: relative;
+  border: 1px solid #000;
+  transition: all 0.1s ease;
+}
+
+.light-bulb.red.active { background-color: var(--signal-red); box-shadow: 0 0 15px var(--signal-red); }
+.light-bulb.yellow.active { background-color: var(--signal-yellow); box-shadow: 0 0 15px var(--signal-yellow); }
+.light-bulb.green.active { background-color: var(--signal-green); box-shadow: 0 0 15px var(--signal-green); }
+
+/* Minimal Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+
+/* Road Cards */
+.road-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-subtle);
+}
+
+.road-card.active {
+  border-color: var(--signal-green);
+  background-color: rgba(34, 197, 94, 0.03);
+}
+
+.road-card.inactive {
+  opacity: 0.8;
+}
+
+/* Timer minimal text */
+.timer-text {
+  font-size: 2.5rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
